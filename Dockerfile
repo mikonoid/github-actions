@@ -1,3 +1,3 @@
 FROM alpine:latest
 
-RUN apk update && apk install vim
+RUN apk update && apk add vim
