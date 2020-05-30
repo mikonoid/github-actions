@@ -56,13 +56,12 @@ jobs:
 
       
       - name: Push image for master branch
-        run: |
         if: github.ref == 'refs/heads/master'
+        run: |
           IMAGE_ID=docker.io/mk51/$IMAGE_NAME
           
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-
           # Strip git ref prefix from version
           VERSION="master-latest"
 
@@ -76,8 +75,8 @@ jobs:
           docker push $IMAGE_ID:latest
          
       - name: Push image for other branches
-        run: |
         if: github.ref == 'refs/heads/*' && github.ref != 'refs/heads/master'
+        run: |
           IMAGE_ID=docker.io/mk51/$IMAGE_NAME
           
           # Change all uppercase to lowercase
@@ -87,6 +86,6 @@ jobs:
 
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION-${GITHUB_SHA}
+          docker push $IMAGE_ID:$VERSION-${GITHUB_SHA}
    
