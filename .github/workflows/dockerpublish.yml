@@ -75,7 +75,6 @@ jobs:
           docker push $IMAGE_ID:latest
          
       - name: Push image for other branches
-        if: github.ref == 'refs/heads/*'
         run: |
           IMAGE_ID=docker.io/mk51/$IMAGE_NAME
           
