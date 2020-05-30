@@ -89,7 +89,7 @@ jobs:
           docker push $IMAGE_ID:$VERSION-${GITHUB_SHA}
           
       - name: Push image for tags
-        if: github.ref == 'refs/tags/*'
+        if: github.ref == 'refs/tags/v*'
         run: |
           IMAGE_ID=docker.io/mk51/$IMAGE_NAME
           
