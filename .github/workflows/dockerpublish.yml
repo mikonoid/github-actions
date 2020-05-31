@@ -9,7 +9,7 @@ on:
     # Publish `master` as Docker `master-latest` image.
     branches:
       - master
-      - '*'
+      - *
 
     # Publish `v1.2.3` tags as releases.
     tags:
