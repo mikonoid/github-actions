@@ -86,5 +86,19 @@ jobs:
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION-${GITHUB_SHA}
           docker push $IMAGE_ID:$VERSION-${GITHUB_SHA}
+          
+      - name: Push image for other branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/*'
+        run: |
+          IMAGE_ID=docker.io/mk51/$IMAGE_NAME
+          
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          # Strip git ref prefix from version
+          VERSION="::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION-${GITHUB_SHA}
+          docker push $IMAGE_ID:$VERSION-${GITHUB_SHA}
    
 
