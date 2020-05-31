@@ -88,7 +88,7 @@ jobs:
           docker push $IMAGE_ID:$VERSION-${GITHUB_SHA}
           
       - name: Push image for other branch
-        if: github.event_name == 'push' && github.ref == 'refs/heads/*'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/branch1'
         run: |
           IMAGE_ID=docker.io/mk51/$IMAGE_NAME
           
