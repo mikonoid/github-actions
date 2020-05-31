@@ -9,7 +9,7 @@ on:
     # Publish `master` as Docker `master-latest` image.
     branches:
       - master
-      - *
+      - '*'
 
     # Publish `v1.2.3` tags as releases.
     tags:
@@ -88,7 +88,7 @@ jobs:
           docker push $IMAGE_ID:$VERSION-${GITHUB_SHA}
           
       - name: Push image for other branch
-        if: github.event_name == 'push' && github.ref == 'refs/heads/branch1'
+        if: github.event_name == 'push' && github.ref != 'refs/heads/master'
         run: |
           IMAGE_ID=docker.io/mk51/$IMAGE_NAME
           
