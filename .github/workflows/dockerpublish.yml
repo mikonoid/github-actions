@@ -95,7 +95,7 @@ jobs:
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
           # Strip git ref prefix from version
-          VERSION=$(echo "##[set-output name=branch;]$(echo ${GITHUB_REF##*/})")
+          VERSION=$('##[set-output name=branch;]$(echo ${GITHUB_REF##*/})')
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION-${GITHUB_SHA}
