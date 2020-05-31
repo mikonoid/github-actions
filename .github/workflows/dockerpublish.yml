@@ -18,6 +18,7 @@ on:
     release:
       actions:
         - published
+        - created
       
 
   # Run tests for any PRs.
