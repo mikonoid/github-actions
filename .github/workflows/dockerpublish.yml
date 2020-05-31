@@ -77,7 +77,7 @@ jobs:
    
           
       - name: Push image for release
-        if: github.ref == 'refs/tags/v*'
+        if: contains(github.ref, 'release')
         run: |
           IMAGE_ID=docker.io/mk51/$IMAGE_NAME
           
