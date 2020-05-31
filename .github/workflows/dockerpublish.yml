@@ -81,8 +81,7 @@ jobs:
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
           # Use Docker `latest` tag convention
           VERSION == "master-latest"-${GITHUB_SHA}
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
+          echo $VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
 
